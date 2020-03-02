@@ -1,0 +1,17 @@
+@font-face{
+    font-family: WebFont;
+    src: url('../assets/fonts/BPGMrgvlovani2010.ttf');
+}
+* , html, body{
+    font-family: WebFont;
+}
+
+.logo{
+    background-image: url('../assets/images/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.mainContainer{
+    margin-top: 30px;
+
+}
