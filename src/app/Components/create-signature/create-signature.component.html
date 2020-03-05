@@ -5,24 +5,24 @@
                 <div class="card-body">
                     <h3 class="card-title">ხელმოწერის გენერატორი</h3>
                    <div class="col-md-12">
-                       <div class="row">
-                           <div class="col-md-2">
+                       <div class="row imagesRow">
+                           <div class="col-md-2 container">
                                <input type="radio" #logo1 [(ngModel)]="SignatureModel.LogoImage" value="../../../assets/images/ChooseLogo/logo1.png">
                                <img src="../../../assets/images/ChooseLogo/logo1.png" [ngClass]="status==1?'active':''" (click)="logo1.click();status=1"/>
                            </div>
-                           <div class="col-md-2">
+                           <div class="col-md-2 container">
                             <input type="radio" #logo2 [(ngModel)]="SignatureModel.LogoImage" value="../../../assets/images/ChooseLogo/logo2.png">
                             <img src="../../../assets/images/ChooseLogo/logo2.png" [ngClass]="status==2?'active':''"  (click)="logo2.click();status=2"/>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 container">
                             <input type="radio" #logo3 [(ngModel)]="SignatureModel.LogoImage" value="../../../assets/images/ChooseLogo/logo3.png">
                             <img src="../../../assets/images/ChooseLogo/logo3.png" [ngClass]="status==3?'active':''"  (click)="logo3.click();status=3"/>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 container">
                             <input type="radio" #logo4 [(ngModel)]="SignatureModel.LogoImage" value="../../../assets/images/ChooseLogo/logo4.png">
                             <img src="../../../assets/images/ChooseLogo/logo4.png" [ngClass]="status==4?'active':''"  (click)="logo4.click();status=4"/>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 container">
                             <input type="radio" #logo5 [(ngModel)]="SignatureModel.LogoImage" value="../../../assets/images/ChooseLogo/logo5.png">
                             <img src="../../../assets/images/ChooseLogo/logo5.png" [ngClass]="status==5?'active':''"  (click)="logo5.click(); status=5"/>
                         </div>
@@ -51,11 +51,11 @@
                     </div>
                     <div class="row inputRow">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-primary active">
-                              <input type="radio" (click)="SignatureModel.IsHeadOffice=true" > სათავო ოფისი
+                            <label class="btn btn-default active">
+                              <input type="radio" (click)="SignatureModel.IsHeadOffice=true;changeOfficeAddress()" > სათავო ოფისი
                             </label>
-                            <label class="btn btn-primary">
-                              <input type="radio"(click)="SignatureModel.IsHeadOffice=false" > სერვის ცენტრი
+                            <label class="btn btn-default">
+                              <input type="radio"(click)="SignatureModel.IsHeadOffice=false;changeOfficeAddress()" > სერვის ცენტრი
                             </label>
                           </div>
                     </div>
@@ -95,21 +95,24 @@
         </div>
         <div class="col-md-4">
             <div class="card col-md-12">
-                <div class="card-body textColorGray" #CopyText>
-                  <b><label>{{SignatureModel.FirstName}}</label><label>&nbsp; {{SignatureModel.LastName}}</label></b><br><br>
-                  <label>{{SignatureModel.Postition}}</label><br>
-                  <label>{{SignatureModel.Sector}}</label><br>
-                  <label>{{SignatureModel.Department}}</label><br><br>
-
-                  <label>{{SignatureModel.City}},</label><label>{{SignatureModel.OfficeAddress}}</label><br>
-                  <label>E-Mail:</label><label>{{SignatureModel.Email}}</label><br><br>
-                  <label>Phone: (+995) {{SignatureModel.OfficePhone}} (ext. {{SignatureModel.InternalPhone}})</label><br>
-                  <label>Mobile: {{SignatureModel.MobileNumber}}</label>
+                <h3 class="card-title" style="padding-top:20px;">ხელმოწერა</h3>
+                <div class="card-body textColorGray" >
                   
+                  <b><p *ngIf="SignatureModel.FirstName" style="color:grey;font-weight:bold;" >{{SignatureModel.FirstName}}<label *ngIf="SignatureModel.LastName">&nbsp; {{SignatureModel.LastName}}</label><p></p></b><br><br>
+                  <p *ngIf="SignatureModel.Postition" style="color:grey;" >{{SignatureModel.Postition}}</p>
+                  <p *ngIf="SignatureModel.Sector" style="color:grey;" >{{SignatureModel.Sector}}</p>
+                  <p *ngIf="SignatureModel.Department" style="color:grey;" >{{SignatureModel.Department}}</p>
 
-                  <p class="card-text"><img [src]="SignatureModel.LogoImage"></p>
+                  <p *ngIf="SignatureModel.City" style="color:grey;">{{SignatureModel.City}},<span *ngIf="SignatureModel.OfficeAddress">{{SignatureModel.OfficeAddress}}</span></p>
+                  <p *ngIf="SignatureModel.Email" style="color:grey;">E-Mail:<span *ngIf="SignatureModel.Email">{{SignatureModel.Email}}</span></p>
+                  <p *ngIf="SignatureModel.OfficePhone" style="color:grey;">Phone: (+995) {{SignatureModel.OfficePhone}} (ext. {{SignatureModel.InternalPhone}})</p>
+                  <p *ngIf="SignatureModel.MobileNumber" style="color:grey;">Mobile: {{SignatureModel.MobileNumber}}</p>
+             
+                
+                  <p class="card-text"><img [src]="SignatureModel.LogoImage" #CopyText></p>
+                
                   <div *ngIf="SignatureModel.IsHeadOffice==true"></div>
-                  <!-- <a (click)="copyClipBoard()" class="btn btn-primary">{{SignatureModel.IsHeadOffice}}</a> -->
+                  <a (click)="copyClipboard()" class="btn btn-primary">დაკოპირება</a>
                 </div>
               </div>
         </div>
